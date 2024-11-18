@@ -9,8 +9,6 @@ let quarry="programing";
 async function displayPicture(){
     let data = await fetch(`${apiUrl}${KEY}&query=${quarry}&page=${currPage}&per_page=12`)
     let res = await data.json();
-    // console.log(res);
-    
     res.results.forEach(ele => {
         
         let item = `
@@ -18,15 +16,16 @@ async function displayPicture(){
     `
     container .innerHTML += item;
     });
-    currPage++;
 }
 
 window.addEventListener('load',displayPicture)
 
-// window.addEventListener('scroll',()=>{
-//     console.log(document.body.offsetHeight);
+window.addEventListener('scroll',()=>{
+    // console.log(document.body.offsetHeight);
     
-//     if(Math.ceil(window.scrollY + window.innerHeight) >= document.body.offsetHeight){
-//         displayPicture();
-//     }
-// })
+    if(Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight){
+        displayPicture();
+        console.log("helloow");
+        
+    }
+})
